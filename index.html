@@ -25,10 +25,7 @@ need to load. You'll see a lot of <link>s to CSS files for styles and
 
     <!-- Load the page styles. -->
     <link href="css/style.css" rel="stylesheet">
-    <!--
-  Uncomment the <script> tag below when you're ready to add an interactive Google Map to your resume!
--->
-    <!-- <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script> -->
+
 
     <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
@@ -93,6 +90,7 @@ The next line tells the browser where to download the JavaScript file you'll be
 writing. In resumeBuilder.js, you'll be writing code that builds the resume
 dynamically when this website, index.html, is opened.
 -->
+    <script src="js/data.js"></script>
     <script src="js/resumeBuilder.js"></script>
     <script src="js/quizes.js"></script>
 
@@ -141,6 +139,12 @@ course.
             document.getElementById('mapDiv').style.backgroundColor = 'black';
         }
     </script>
+    <!--
+  Uncomment the <script> tag below when you're ready to add an interactive Google Map to your resume!
+-->
+    <!-- remove this key before pushing-->
+    <!-- see https://support.google.com/googleapi/answer/6310037 -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzxVI0LvyoO90d1PKEajdVztjgLKKuNT0&callback=initializeMap&libraries=places"></script>
 </body>
 
 </html>

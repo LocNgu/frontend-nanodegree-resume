@@ -1,30 +1,12 @@
 //Quiz:Format Data, Build a Resume
-var name = "Nguyen Dang Duc Loc";
-var role = "Web Developer";
+var data
 var formattedName = HTMLheaderName.replace("%data%", name);
 var formattedRole = HTMLheaderRole.replace("%data%", role);
 
 $("#header").prepend(formattedRole);
 $("#header").prepend(formattedName);
 ///////////////////////////////////////////
-var bio = {
-    "name": "Nguyen Dang Duc Loc",
-    "age": 22,
-    "role": "Web Developer Rookie",
-    "contacts": {
-        "location": "Dresden",
-        "email": "nguyendangduc.loc@gmail.com",
-        "mobile": "0160-995 271 09",
-        "github": "LocNgu",
-        "twitter": "blub",
-        "bioPic": "./images/fry.jpg"
-    },
-    "welcomeMsg": "Welcome to my Page",
-    "skills": ["programming", "awesomeness", "copy&pasting", "procastinating"]
-};
 
-//$("#main").prepend(HTMLheaderName.replace("%data%", name));
-//$("#main").prepend(HTMLheaderRole.replace("%data%", role));
 
 $("#topContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
 $("#topContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
@@ -38,75 +20,33 @@ if (bio.skills.length > 0) {
     $("#header").append(HTMLskillsStart);
 
     for (i = 0; i < bio.skills.length; i++) {
-        $("#skills").append(HTMLskills.replace("%data%", bio.skills[i] + " "));
+        $(".skills-entry:last").append(HTMLskills.replace("%data%", bio.skills[i] + " "));
     }
     // for(skill in bio.skills){
     //   $("#skills").append(HTMLskills.replace("%data%", bio.skills[skill] + " "));
     // }
 }
-
 ///////////////////////////////////////////
-var work = {
-    "jobs": [{
-        "title": "internship",
-        "employer": "Jungpioniere",
-        "workDate": "dd.mm.yyyy-dd.mm.yyyy",
-        "workDescription": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt "
-    }, {
-        "title": "super great job",
-        "employer": "next big thing",
-        "workDate": "dd.mm.yyyy-dd.mm.yyyy",
-        "workDescription": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invimy eirmod tempor invidunt "
-
-    }, {
-        "title": "bla",
-        "employer": "blub",
-        "workDate": "dd.mm.yyyy-dd.mm.yyyy",
-        "workDescription": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, seabore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt "
-    }]
-}
-
 function displayWork() {
     for (job in work.jobs) {
         $("#workExperience").append(HTMLworkStart);
         var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
         var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
         var formattedEmployerTitle = formattedEmployer + formattedTitle;
-
+        var formattedHTMLworkLocation = HTMLworkLocation.replace("%data%", work.jobs[job].location);
         var formattedWorkDate = HTMLworkDates.replace("%data%", work.jobs[job].workDate);
         var formattedWorkDescription = HTMLworkDescription.replace("%data%", work.jobs[job].workDescription);
         //.work-entry is a class
         $(".work-entry:last").append(formattedEmployerTitle);
         $(".work-entry:last").append(formattedWorkDate);
+        $(".work-entry:last").append(formattedHTMLworkLocation);
         $(".work-entry:last").append(formattedWorkDescription);
 
     }
 }
-
 displayWork();
-
 ///////////////////////////////////////////
-var projects = {
-    "projects": [{
-        "name": "Uncanny Valley Landing Page",
-        "date": "dd-mm-yyyy",
-        "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ",
-        "image": "./images/197x148.gif"
-    }, {
-        "name": "SWT Internship",
-        "date": "dd-mm-yyyy",
-        "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ",
-        "image": "./images/197x148.gif"
-
-    }, {
-        "name": "Robolab",
-        "date": "dd-mm-yyyy",
-        "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ",
-        "image": "./images/197x148.gif"
-
-    }]
-};
-
+//encapsulating functions
 projects.display = function() {
         for (project in projects.projects) {
             $("#projects").append(HTMLprojectStart);
@@ -119,26 +59,23 @@ projects.display = function() {
     //
 projects.display();
 /////////////////////////////////////////////////
-// work.position equal to work["position"]
-// bracket notation
-var education = {};
-education["name"] = "TU Dresden";
-education["years"] = "2013-2016";
-education["city"] = "Dresden";
-education["degree"] = "BA";
-education["computer Science"]
-    //JSON
 
-$("#education").append(HTMLschoolStart);
-$("#education").append(education.name);
-/*
-$("#workExperience").append(HTMLworkStart);
-$("#workExperience").append(HTMLworkEmployer.replace("%data%", work["employer"]));
-$("#workExperience").append(HTMLworkTitle.replace("%data%", work["position"]));
+//JSON
+education.display = function() {
+    for (school in education.school) {
+        var formattedSchoolName = HTMLschoolName.replace("%data%", education.school[school].name) +
+            HTMLschoolDegree.replace("%data%", education.school[school].degree)
 
-$("#education").append(HTMLschoolName.replace("%data%", education.name));
-*/
-////////////////////////////////////////////
+        $("#education").append(HTMLschoolStart);
+        $(".education-entry:last").append(formattedSchoolName);
+        $(".education-entry:last").append(HTMLschoolDates.replace("%data%", education.school[school].years));
+        $(".education-entry:last").append(HTMLschoolLocation.replace("%data%", education.school[school].location));
+
+        if (education.school[school].major) $(".education-entry:last").append(HTMLschoolMajor.replace("%data%", education.school[school].major));
+    }
+}
+education.display()
+    ////////////////////////////////////////////
 var charEscape = function(_html) {
     var newHTML = _html;
 
@@ -150,10 +87,18 @@ var charEscape = function(_html) {
 ///////////////////////////////////////////////////////
 //internationalizeButton
 
-$("#main").append(internationalizeButton);
+// $("#main").append(internationalizeButton);
+//
+// function inName(fName, lName) {
+//     fName = fName.slice(0, 1).firstLetterFname.toUpperCase() + fName.slice(1);
+//     lName.toUpperCase();
+//     var name = fName + ' ' + lName;
+// }
+//////////////////////////////////////////////////////
+$("#mapDiv").append(googleMap);
 
-function inName(fName, lName) {
-    fName = fName.slice(0, 1).firstLetterFname.toUpperCase() + fName.slice(1);
-    lName.toUpperCase();
-    var name = fName + ' ' + lName;
-}
+$("#footerContacts").append(HTMLmobile.replace("%data%", bio.contacts.mobile));
+$("#footerContacts").append(HTMLemail.replace("%data%", bio.contacts.email));
+$("#footerContacts").append(HTMLgithub.replace("%data%", bio.contacts.github));
+$("#footerContacts").append(HTMLtwitter.replace("%data%", bio.contacts.twitter));
+$("#footerContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
